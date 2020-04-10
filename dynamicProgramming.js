@@ -29,6 +29,9 @@ const howSimilar = (word1, word2) => {
 const words = ['fish', 'fosh', 'diches']
 const search = 'hish'
 
+console.log('------')
+console.log('Testing similarity of words')
+
 const similarities = words.map((w) => {
   console.log('------')
   console.log(`Testing ${w} to ${search}`)
