@@ -93,3 +93,40 @@ const searchSquare = (x, y) => {
   console.log(`Greater square is: ${searchSquare(rect[0], rect[1])}`)
 })
 console.log(`------\n\n`)
+
+/**
+ * The best solution, but not using recursive
+ * O(n)
+ */
+const fib = (n) => {
+  if (n < 3) return 1
+
+  let a = 1,
+    b = 0,
+    temp
+
+  while (n >= 0) {
+    temp = a  /// Save A in a temporary variable
+    a = a + b /// Assign a value of a + b
+    b = temp  /// Save B as the "old A"
+    n--
+  }
+
+  return b
+}
+
+/**
+ * Here we will have performance problems
+ * O(n²)
+ */
+const fibRecursive = (n) => {
+  if (n < 3) return 1
+  return fibRecursive(n - 1) + fibRecursive(n - 2)
+}
+
+;[2, 5, 10, 25, 50].forEach((f) => {
+  console.log(`------`)
+  console.log(`Searching fib for ${f}`)
+  console.log(`Greater square is: ${fib(f)}`)
+})
+console.log(`------\n\n`)
