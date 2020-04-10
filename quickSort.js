@@ -1,9 +1,7 @@
 const quickSort = (array) => {
   if (array.length < 2) return array
 
-  const pivot = array[0]
-  array.splice(0, 1)
-
+  const pivot = array.shift()
   const less = array.filter((e) => e <= pivot)
   const greater = array.filter((e) => e > pivot)
 
