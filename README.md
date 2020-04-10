@@ -11,5 +11,5 @@ node <algoFile>
 Example:
 
 ```shell
-node binarySearch.ts
+node binarySearch.js
 ```
