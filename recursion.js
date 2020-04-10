@@ -55,6 +55,21 @@ const returnSmaller = (x, y) => (x > y ? y : x)
 const returnBigger = (x, y) => (x > y ? x : y)
 
 /// Search bigger square that can be used as same size in a rectangle
+/*
+Imagine this rectangle
+
+      400
+------------------
+                  |
+                  |   300
+                  |
+------------------
+
+What's the bigger square I can use to fill all the rectangle
+without leaving anything left?
+
+searchSquare(400, 300) = 100
+*/
 const searchSquare = (x, y) => {
   if (x === y) return x
 
@@ -68,6 +83,7 @@ const searchSquare = (x, y) => {
 }
 
 ;[
+  [400, 300],
   [1000, 300],
   [2000, 800],
   [5000, 2450],
