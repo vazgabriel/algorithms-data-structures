@@ -99,13 +99,13 @@ console.log(`------\n\n`)
  * O(n)
  */
 const fib = (n) => {
-  if (n < 3) return 1
+  if (n <= 1) return 1
 
   let a = 1,
-    b = 0,
+    b = 1,
     temp
 
-  while (n >= 0) {
+  while (n > 0) {
     temp = a  /// Save A in a temporary variable
     a = a + b /// Assign a value of a + b
     b = temp  /// Save B as the "old A"
@@ -120,13 +120,26 @@ const fib = (n) => {
  * O(n²)
  */
 const fibRecursive = (n) => {
-  if (n < 3) return 1
+  if (n <= 1) return 1
   return fibRecursive(n - 1) + fibRecursive(n - 2)
 }
+
+;[2, 5, 10, 25].forEach((f) => {
+  console.log(`------`)
+  console.log(`Searching fibRecursive for ${f}`)
+  console.time()
+  console.log(`Greater square is: ${fibRecursive(f)}`)
+  console.timeEnd()
+})
+console.log(`------`)
+console.log('Stopped in 25 to prevent problems')
+console.log(`------\n\n`)
 
 ;[2, 5, 10, 25, 50].forEach((f) => {
   console.log(`------`)
   console.log(`Searching fib for ${f}`)
+  console.time()
   console.log(`Greater square is: ${fib(f)}`)
+  console.timeEnd()
 })
 console.log(`------\n\n`)
