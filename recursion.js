@@ -95,20 +95,20 @@ const searchSquare = (x, y) => {
 console.log(`------\n\n`)
 
 /**
- * The best solution, but not using recursive
+ * Basic while solution with high performance
  * O(n)
  */
 const fib = (n) => {
-  if (n <= 1) return 1
+  if (n <= 2) return 1
 
   let a = 1,
     b = 1,
     temp
 
-  while (n > 0) {
-    temp = a  /// Save A in a temporary variable
+  while (n > 1) {
+    temp = a /// Save A in a temporary variable
     a = a + b /// Assign a value of a + b
-    b = temp  /// Save B as the "old A"
+    b = temp /// Save B as the "old A"
     n--
   }
 
@@ -120,26 +120,78 @@ const fib = (n) => {
  * O(n²)
  */
 const fibRecursive = (n) => {
-  if (n <= 1) return 1
+  if (n <= 2) return 1
   return fibRecursive(n - 1) + fibRecursive(n - 2)
+}
+
+/**
+ * Here we will use memoization to prevent recalculations
+ * O(2n) = O(n) because 2 is a costant
+ */
+const fibMemoRecursive = (n, memo) => {
+  memo = memo || {}
+  if (!!memo[n]) return memo[n]
+
+  let result
+  if (n <= 2) {
+    result = 1
+  } else {
+    result = fibMemoRecursive(n - 1, memo) + fibMemoRecursive(n - 2, memo)
+  }
+
+  memo[n] = result
+  return result
+}
+
+/**
+ * Bottom up solution with high performance
+ * O(n)
+ */
+const fibBottomUp = (n) => {
+  if (n <= 2) return 1
+
+  const bottomUp = new Array(n)
+  bottomUp[0] = 1
+  bottomUp[1] = 1
+
+  for (let i = 2; i < n; i++) {
+    bottomUp[i] = bottomUp[i - 1] + bottomUp[i - 2]
+  }
+
+  return bottomUp[n - 1]
 }
 
 ;[2, 5, 10, 25].forEach((f) => {
   console.log(`------`)
   console.log(`Searching fibRecursive for ${f}`)
   console.time()
-  console.log(`Greater square is: ${fibRecursive(f)}`)
+  console.log(`Result is: ${fibRecursive(f)}`)
   console.timeEnd()
 })
 console.log(`------`)
 console.log('Stopped in 25 to prevent problems')
 console.log(`------\n\n`)
-
+;[2, 5, 10, 25, 50].forEach((f) => {
+  console.log(`------`)
+  console.log(`Searching fibMemoRecursive for ${f}`)
+  console.time()
+  console.log(`Result is: ${fibMemoRecursive(f)}`)
+  console.timeEnd()
+})
+console.log(`------\n\n`)
 ;[2, 5, 10, 25, 50].forEach((f) => {
   console.log(`------`)
   console.log(`Searching fib for ${f}`)
   console.time()
-  console.log(`Greater square is: ${fib(f)}`)
+  console.log(`Result is: ${fib(f)}`)
+  console.timeEnd()
+})
+console.log(`------\n\n`)
+;[2, 5, 10, 25, 50].forEach((f) => {
+  console.log(`------`)
+  console.log(`Searching fibBottomUp for ${f}`)
+  console.time()
+  console.log(`Result is: ${fibBottomUp(f)}`)
   console.timeEnd()
 })
 console.log(`------\n\n`)
